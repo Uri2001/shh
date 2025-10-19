@@ -2,7 +2,7 @@
 // go.mod
 // =========================
 // Run `go mod tidy` after placing this file to fetch deps.
-module shh
+module github.com/Uri2001/shh
 
 go 1.24.0
 
