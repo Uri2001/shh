@@ -2,5 +2,5 @@
 
 package main
 
-func captureConsoleState()  {}
+func captureConsoleState() {}
 func restoreConsoleState() {}

@@ -1,3 +1,18 @@
-AGENTS.md
-go.mod
-go.sum
+# Binaries
+/bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Build cache / coverage
+/dist/
+/cover.out
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+Thumbs.db

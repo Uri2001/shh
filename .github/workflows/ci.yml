@@ -1,0 +1,30 @@
+name: Go CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - name: Verify gofmt
+        run: |
+          if [ -n "$(gofmt -l .)" ]; then
+            echo "Run gofmt on the following files:" && gofmt -l . && exit 1
+          fi
+      - name: Go mod tidy check
+        run: |
+          go mod tidy
+          git diff --exit-code
+      - name: Build
+        run: go build ./...
+      - name: Test
+        run: go test ./...
