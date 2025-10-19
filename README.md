@@ -13,13 +13,13 @@
 ## Install
 
 ```bash
-go install github.com/<your-username>/shh/cmd/shh@latest
+go install github.com/Uri2001/shh/cmd/shh@latest
 ```
 
 Or clone the repo and build locally:
 
 ```bash
-git clone https://github.com/<your-username>/shh.git
+git clone https://github.com/Uri2001/shh.git
 cd shh
 make build   # binary in ./bin/shh
 ```
