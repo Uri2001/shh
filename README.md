@@ -42,9 +42,9 @@ Keyboard shortcuts inside the UI:
 | `Esc`                | Clear search                        |
 | `Enter`              | Connect (or exit when printing)     |
 | `PgUp` / `PgDn`      | Page through the list               |
-| `a` / `e` / `d`      | Add / edit / delete host            |
-| `r`                  | Import from shell history           |
-| `q`                  | Quit                                |
+| `F4` / `F3` / `Del`  | Add / edit / delete host            |
+| `F5`                 | Import from shell history           |
+| `Ctrl+C`             | Quit                                |
 
 Command-line flags:
 
