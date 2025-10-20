@@ -34,6 +34,8 @@ const (
 	importDoneKey = "import_done"
 )
 
+var version = "0.2.0"
+
 // ------------------------- paths -------------------------
 func dataDir() (string, error) {
 	if runtime.GOOS == "linux" {
@@ -648,9 +650,17 @@ func main() {
 	defer cleanupTerminal()
 
 	// run modes
+	var showVersion bool
+	flag.BoolVar(&showVersion, "version", false, "print version and exit")
+	flag.BoolVar(&showVersion, "v", false, "print version and exit")
 	printHost := flag.Bool("print", false, "print selected host and exit")
 	printCmd := flag.Bool("cmd", false, "print command 'ssh <host>' and exit")
 	flag.Parse()
+
+	if showVersion {
+		fmt.Println(version)
+		return
+	}
 	mode := runExecShell
 	if *printHost {
 		mode = runPrintHost
