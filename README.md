@@ -5,9 +5,9 @@
 ## Features
 
 - Fuzzy search across hostnames and comments.
-- Keyboard-driven workflow (`/` to search, `a/e/d` to add/edit/delete, `PgUp/PgDn` for fast navigation).
+- Keyboard-driven workflow (`/` to search, `Ctrl+A/E/D` to add/edit/delete, `Ctrl+R` to import, `PgUp/PgDn` for fast navigation).
 - Tracks usage statistics (last used time, connect count).
-- Imports hosts from existing shell history (`r`).
+- Imports hosts from existing shell history (`Ctrl+R`).
 - Prints or executes the SSH command depending on flags.
 
 ## Install
@@ -42,9 +42,9 @@ Keyboard shortcuts inside the UI:
 | `Esc`                | Clear search                        |
 | `Enter`              | Connect (or exit when printing)     |
 | `PgUp` / `PgDn`      | Page through the list               |
-| `F4` / `F3` / `Del`  | Add / edit / delete host            |
-| `F5`                 | Import from shell history           |
-| `Ctrl+C`             | Quit                                |
+| `Ctrl+A` / `Ctrl+E` / `Ctrl+D` (Alt+N/E/D) | Add / edit / delete host |
+| `Ctrl+R` (Alt+R)        | Import from shell history           |
+| `Ctrl+C` / `q`       | Quit                                |
 
 Command-line flags:
 
@@ -71,3 +71,4 @@ MIT. See [LICENSE](LICENSE).
 ## Contributing
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for details on reporting issues, proposing enhancements, and submitting pull requests.
+

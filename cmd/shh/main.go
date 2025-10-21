@@ -34,7 +34,7 @@ const (
 	importDoneKey = "import_done"
 )
 
-var version = "0.2.0"
+var version = "dev"
 
 // ------------------------- paths -------------------------
 func dataDir() (string, error) {
@@ -367,7 +367,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		switch m.mode {
 		case modeList:
 			switch k {
-			case "ctrl+c":
+			case "ctrl+c", "q":
 				return m, tea.Quit
 			case "/":
 				m.search.Focus()
@@ -398,24 +398,24 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.finalHost = sel.Host
 					return m, tea.Quit // further action handled after Run()
 				}
-			case "f4":
+			case "ctrl+a", "alt+n":
 				m.mode = modeAdd
 				m.initInputs(Host{})
 				return m, nil
-			case "f3":
+			case "ctrl+e", "alt+e":
 				if sel, ok := m.currentSelection(); ok {
 					m.mode = modeEdit
 					m.initInputs(sel)
 				}
 				return m, nil
-			case "del":
+			case "ctrl+d", "alt+d":
 				if sel, ok := m.currentSelection(); ok {
 					m.mode = modeConfirmDelete
 					m.status = fmt.Sprintf("Delete %s? y/N", sel.Host)
 					m.finalHost = ""
 				}
 				return m, nil
-			case "f5":
+			case "ctrl+r", "alt+r":
 				added, _ := importFromHistory(m.db)
 				_ = setMeta(m.db, importDoneKey, "1")
 				_ = m.reload()
@@ -517,7 +517,13 @@ func (m model) View() string {
 			}
 		}
 		infoLine := fmt.Sprintf("Total: %d  Matched: %d  Visible: %d", len(m.allHosts), len(m.filteredIx), displayed)
-		return baseStyle.Render(headerStyle.Render("shh - SSH helper") + "\n" + m.search.View() + "\n\n" + tableView + "\n" + infoLine + "\n" + statusStyle.Render("Enter - connect  / - search  F4/F3/Del - add/edit/delete  F5 - import  Ctrl+C - quit") + "\n")
+		return baseStyle.Render(
+			headerStyle.Render("shh - SSH helper") + "\n" +
+				m.search.View() + "\n\n" +
+				tableView + "\n" +
+				infoLine + "\n" +
+				statusStyle.Render("Enter connect  / search  Ctrl+A/E/D add/edit/delete  Ctrl+R import  Ctrl+C or q quit") + "\n",
+		)
 	}
 }
 
