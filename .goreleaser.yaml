@@ -1,0 +1,43 @@
+project_name: shh
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: shh
+    main: ./cmd/shh
+    ldflags:
+      - -X github.com/Uri2001/shh/cmd/shh.version={{ .Version }}
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    flags:
+      - -trimpath
+    env:
+      - CGO_ENABLED=0
+
+archives:
+  - builds:
+      - shh
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE
+      - README.md
+
+checksum:
+  name_template: 'checksums.txt'
+
+changelog:
+  use: git
+
+release:
+  github:
+    owner: Uri2001
+    name: shh
